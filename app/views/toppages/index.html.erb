@@ -1,5 +1,11 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to My Website</h1>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Welcome to My Website</h1>
+      <p>If you are a new user, then <%= link_to 'signup' , signup_path %></p>
+      <p>If you already registered, then <%= link_to 'login' , login_path %></p>
+    </div>
   </div>
-</div>:
+<% end %>
