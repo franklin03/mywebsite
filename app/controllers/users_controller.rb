@@ -54,12 +54,16 @@ class UsersController < ApplicationController
   def followings
     @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    @micropost = current_user.microposts.build  # form_with 用
     counts(@user)
   end
   
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    @micropost = current_user.microposts.build  # form_with 用
     counts(@user)
   end
   
