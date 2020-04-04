@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <p>ログインユーザ: <%= current_user.name %></p>
+</div>
+<div class="container-fluid">
+  <table class="table table-striped" >
+    <thead>
+      <tr>
+        <th>task</th>
+        <th>
+          <div class="text-center">
+            status
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= link_to task.content, task_path(task) %></td>
+          <td>
+            <div class="text-center">
+              <%= task.status %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="ml-3">
+  <%= link_to 'create Task', new_task_path %> 
+</div>

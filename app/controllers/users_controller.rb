@@ -7,10 +7,27 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    counts(@user)
   end
 
   def new
     @user = User.new
+  end
+  
+  def edit
+    @user=User.find(params[:id])
+  end
+  
+  def update
+      @user = User.find(params[:id])
+      if @user.update(name_params)
+        flash[:success] = 'name は正常に更新されました'
+        redirect_to root_path
+      else
+        flash.now[:danger] = 'name は更新されませんでした'
+        render :edit
+      end
   end
 
   def create
@@ -25,9 +42,20 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = '退会しました。'
+    redirect_to signup_path
+  end
+  
   private
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def name_params
+    params.require(:user).permit(:name)
   end
 end

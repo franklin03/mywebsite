@@ -1,0 +1,42 @@
+<% if logged_in? %>
+
+<header class="mb-4">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="justify-content-end">
+    <a class="navbar-brand" href="#">作成したTaskのページ</a>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+<table class="table table-striped" >
+  <thead>
+    <tr>
+      <th>task</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @task.content %></td>
+      <td><%= @task.status %></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<div class="container-fluid">
+  <div class='mt-2 mb-2'>
+    <%= link_to '一覧に戻る', tasks_path, class: 'btn btn-primary' %>
+  </div>
+  <div class='mt-2 mb-2'>
+    <%= link_to 'このtaskを編集する', edit_task_path(@task), class: 'btn btn-primary' %>
+  </div>
+  <div class='mt-2 mb-2'>
+    <%= link_to 'このtaskを削除する', @task, class: 'btn btn-primary', method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  </div>
+</div>
+
+<% else %>
+<% end %>

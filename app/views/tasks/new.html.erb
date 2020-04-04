@@ -1,0 +1,12 @@
+<header class="mb-4">
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Task 新規作成ページ</a>
+    <div class="justify-content-end">
+      <ul class="navbar-nav">
+        <li class="nav-item"><%= link_to '一覧に戻る', tasks_path, class: 'nav-link' %></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<%= render 'form' , task: @task %>
