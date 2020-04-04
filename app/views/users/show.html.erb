@@ -7,6 +7,20 @@
       <div class="card-body">
         <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
       </div>
+      
+      <% if current_user == @user %>    
+      <div class="card-body">
+        <%= form_with(model: @micropost, url: microposts_path, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+          </div>
+          <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div>
+      <% else %>
+      <% end %>
+        
+        
     </div>
     <%= render 'relationships/follow_button', user: @user %>
   </aside>
@@ -19,3 +33,4 @@
     <%= render 'microposts/microposts', microposts: @microposts %>
   </div>
 </div>
+

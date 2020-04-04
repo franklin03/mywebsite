@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    @micropost = current_user.microposts.build  # form_with 用
+
     counts(@user)
   end
 
