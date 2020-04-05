@@ -12,11 +12,11 @@ class MicropostsController < ApplicationController
   end
   def update
     if @micropost.update(micropost_params )
-      flash[:success] = 'micropost は正常に更新されました'
+      flash[:success] = 'micropost updated'
       #render 'toppages/index'
       redirect_to user_path(@micropost.user)
     else
-      flash.now[:danger] = 'micropost は更新されませんでした'
+      flash.now[:danger] = 'micropost was not updated'
       render :edit
     end
   end
@@ -24,18 +24,18 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
-      flash[:success] = 'メッセージを投稿しました。'
+      flash[:success] = 'message posted。'
       redirect_back(fallback_location: current_user)
     else
       @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
-      flash.now[:danger] = 'メッセージの投稿に失敗しました。'
+      flash.now[:danger] = 'failed to posted。'
       render 'toppages/index'
     end
   end
 
   def destroy
     @micropost.destroy
-    flash[:success] = 'メッセージを削除しました。'
+    flash[:success] = 'message deleted'
     redirect_back(fallback_location: root_path)
   end
 

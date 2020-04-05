@@ -1,4 +1,4 @@
-<h1>Name "<%= @user.name %> " を変更する</h1>
+<h1>Modify Name "<%= @user.name %> "</h1>
 
 <%= form_with(model: @user, local: true) do |f| %>
   <%= f.label :name, 'name' %>
@@ -6,4 +6,4 @@
   <%= f.submit 'edit' %>
 <% end %>
 
-<%= link_to '戻る', user_path %>
+<%= link_to 'back', user_path %>

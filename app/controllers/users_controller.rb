@@ -24,10 +24,10 @@ class UsersController < ApplicationController
   def update
       @user = User.find(params[:id])
       if @user.update(name_params)
-        flash[:success] = 'name は正常に更新されました'
+        flash[:success] = 'name updated'
         redirect_to root_path
       else
-        flash.now[:danger] = 'name は更新されませんでした'
+        flash.now[:danger] = 'name update failed'
         render :edit
       end
   end
@@ -36,10 +36,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = 'ユーザを登録しました。'
+      flash[:success] = 'user registered。'
       redirect_to @user
     else
-      flash.now[:danger] = 'ユーザの登録に失敗しました。'
+      flash.now[:danger] = 'user register failed。'
       render :new
     end
   end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = '退会しました。'
+    flash[:success] = 'quit'
     redirect_to signup_path
   end
   
@@ -66,8 +66,6 @@ class UsersController < ApplicationController
     @micropost = current_user.microposts.build  # form_with 用
     counts(@user)
   end
-  
-  
   
   private
   
