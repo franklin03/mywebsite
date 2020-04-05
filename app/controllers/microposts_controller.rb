@@ -13,8 +13,8 @@ class MicropostsController < ApplicationController
   def update
     if @micropost.update(micropost_params )
       flash[:success] = 'micropost は正常に更新されました'
-      render 'toppages/index'
-     # redirect_to user_path
+      #render 'toppages/index'
+      redirect_to user_path(@micropost.user)
     else
       flash.now[:danger] = 'micropost は更新されませんでした'
       render :edit
