@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   
   resources :tasks
   
-  resources :microposts, only: [:create, :destroy]
+  resources :microposts
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  
 end

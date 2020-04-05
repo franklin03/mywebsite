@@ -1,11 +1,12 @@
-<h1>id: <%= @micropost.id %> のメッセージ編集ページ</h1>
+<h1>Update micropost</h1>
+  <% if current_user == @user %>    
 
-<p>aaaaaaaa</p>
-<%= form_with(model: @micropost, url: "micropost/@micropost.id/update" ,local: true) do |f| %>
-  <%= f.label :content, 'メッセージ' %>
-  <%= f.text_field :content %>
+      <%= form_with(model: @micropost, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+      <% end %>
+  <% end %>
 
-  <%= f.submit '投稿' %>
-<% end %>
-
-<%= link_to '一覧に戻る', micropost_path %>
+<%= link_to 'back to', micropost_path %>
