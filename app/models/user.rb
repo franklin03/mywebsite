@@ -14,7 +14,7 @@ class User < ApplicationRecord
   
   has_many :tasks
   
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :likes, through: :favorites, source: :micropost
   has_many :reverse_of_likes, class_name: 'Favorite', foreign_key: 'micropost_id'
   has_many :rev_likes, through: :reverse_of_likes, source: :user
